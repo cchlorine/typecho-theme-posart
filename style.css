@@ -565,6 +565,7 @@ body {
 
 .post-thumbnail {
 	overflow: hidden;
+	min-height: 90px;
 	text-align: center;
 }
 
