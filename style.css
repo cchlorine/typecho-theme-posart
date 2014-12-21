@@ -94,6 +94,9 @@ blockquote {
 
 @media only screen and ( max-width:640px ){
 	blockquote{ margin:1em 0; }
+	.post {
+		margin-bottom: 40px;
+	}
 }
 
 /* Firefox 以外，元素没有下划线，需添加 */
@@ -405,6 +408,7 @@ body {
 	height: 40px;
 	width: 1100px;
 	margin: 0 auto;
+	overflow: hidden;
 	line-height: 40px;
 }
 
@@ -823,6 +827,12 @@ body {
 	padding: 1px;
 	margin-right: 20px;
 	border: 1px solid #ddd;
+}
+
+.comment-content {
+	word-wrap: break-word;
+	word-break: normal;
+	padding-left: 75px;
 }
 
 /* Pagination*/

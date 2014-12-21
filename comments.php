@@ -70,7 +70,9 @@
         <cite class="fn"><em class="authorname"><?php $comments->author(); ?></em>
   			</cite>
       </div>
-      <?php $comments->content(); ?>
+      <section class="comment-content">
+        <?php $comments->content(); ?>
+      </section>
       <footer>
         <time><?php $comments->date('Y-m-d H:i'); ?></time>
         <span class="comment-reply"><?php $comments->reply(); ?></span>
