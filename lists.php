@@ -1,15 +1,28 @@
-<?php while($this->next()): ?> 
-	<article class="article cl">
-		<h2 class="entry-title"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h2>
-		<?php if(posart_thumb_show($this)) {?><div class="mhidden entry-thumbnail"><a href="<?php $this->permalink() ?>"> <img src="<?php echo posart_thumb_show($this); ?>" alt="<?php $this->title() ?>" /></a></div><?php } ?>
-		<div class="entry-content"><?php $this->excerpt(400, '...'); ?></div>
-		<p class="entry-meta">
-			<?php $this->date('F j, Y'); ?> &nbsp;&nbsp;&nbsp;
-			<a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a>&nbsp;&nbsp;&nbsp;
-			<?php $this->category(','); ?>&nbsp;&nbsp;&nbsp;
-			<a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a>
-			<a class="y" href="<?php $this->permalink() ?>">More...</a>
-		</p>
+<?php while($this->next()): $thumb = posart_thumb_show($this); ?>
+	<article class="post<?php if ($thumb) { echo ' thumbnail-on'; }?>">
+		<header class="post-head">
+			<h2 class="post-title">
+				<a href="<?php $this->permalink(); ?>" title="<?php $this->title(); ?>"><?php $this->title(); ?></a>
+			</h2>
+			<time datetime="<?php $this->date(); ?>" class="post-time"><?php $this->date('F j, Y');?></time>
+		</header>
+		<?php if ($thumb) {?>
+		<section class="post-thumbnail">
+			<a href="<?php $this->permalink() ?>">
+				<img src="<?php echo $thumb; ?>" alt="<?php $this->title(); ?>" />
+			</a>
+		</section>
+		<?php } ?>
+		<section class="post-entry">
+			<?php $this->excerpt(300, '...'); ?>
+		</section>
+		<footer class="post-footer clear">
+			<span class="post-tags clear">
+				<?php $this->category(''); ?>
+				<?php $this->tags(''); ?>
+			</span>
+			<a class="post-readmore" href="<?php $this->permalink(); ?>">阅读更多...</a>
+		</footer>
 	</article>
 <?php endwhile; ?>
 <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>

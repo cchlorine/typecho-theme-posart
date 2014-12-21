@@ -1,31 +1,27 @@
-<?php  
+<?php $this->need('header.php'); ?>
+<article class="post">
+  <header class="post-head">
+    <h2 class="post-title">
+      <a><?php $this->title(); ?></a>
+    </h2>
+    <time datetime="<?php $this->date(); ?>" class="post-time"><?php $this->date('F j, Y');?></time>
+  </header>
+  <section class="post-content typo">
+    <?php $this->content(); ?>
+  </section>
+  <footer class="post-footer clear">
+    <span class="post-tags clear">
+      <?php $this->category(''); ?>
+      <?php $this->tags(''); ?>
+    </span>
+    <span class="post-next-prev">
+      <span class="prev"><?php $this->thePrev('%s','已经是第一篇了'); ?></span>
+      <span class="next"><?php $this->theNext('%s','已经是最后一篇了'); ?></span>
+    </span>
+  </footer>
+</article>
 
-if(isset($_GET["action"]) && $_GET["action"] == "ajax_comments"){// Ajax请求的头数据   
-    $this->need('comments.php');   
-}else{   
-    if(strpos($_SERVER["PHP_SELF"],"themes")) header('Location:/');   
-    $this->need('header.php');   
-?>
-<div class="body">
-	<?php $this->need('breadcrumb.php'); ?>
-	<div class="content">
-		<div style="position: relative; z-index: 1;">
-			<header class="entry-header">
-				<h2 class="entry-title"><?php $this->title() ?></h2>
-			</header>
-			<div class="entry-content">
-				<?php $this->content(); ?>
-			</div>
-		</div>
-		<footer>
-			<p class="entry-meta"><?php $this->author(); ?> &nbsp;&nbsp;&nbsp; <?php $this->date('F j, Y'); ?> &nbsp;&nbsp;&nbsp;
-			<?php $this->category(','); ?> &nbsp;&nbsp;&nbsp; <?php $this->tags(', ', true, ''); ?> &nbsp;&nbsp;&nbsp;
-			<?php $this->thePrev('←Prev %s','没有了'); ?> &nbsp;&nbsp;&nbsp;
-			<?php $this->theNext('%s Next→','没有了'); ?></p>
-		</footer>
-		<div class="background" style="background-image: url(<?php $this->options->themeUrl('/img/content/'.rand(1,20).'.jpg)');?>"></div>
-	</div>
-	<div class="comments"><?php $this->need('comments.php'); ?></div>
-</div>
-
-<?php $this->need('footer.php'); } ?>
+<section id="comment-list">
+  <?php $this->need('comments.php'); ?>
+</section>
+<?php $this->need('footer.php'); ?>
