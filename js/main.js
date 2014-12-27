@@ -6,4 +6,12 @@ $(document).ready(function(){
       $('.nav-wrap').css('background', '#fff');
     }
   });
+
+  $('#commentAvatar').click(function(){
+    $('#commentPanel').fadeIn();
+  });
+
+  $('#commentPanelClose').click(function(){
+    $('#commentPanel').fadeOut();
+  });
 });

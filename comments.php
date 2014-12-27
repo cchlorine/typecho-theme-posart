@@ -11,16 +11,27 @@
         <?php if($this->user->hasLogin()): ?>
     		    <p><?php _e('登录身份：'); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
         <?php else: ?>
-      		<p>
-      			<input type="text" name="author" id="author" class="text" placeholder="昵称" value="<?php $this->remember('author'); ?>" required />
-      			<input type="email" name="mail" id="mail" class="text" placeholder="E-Mail" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
-      			<input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
-      		</p>
+          <a href="javascript:;" id="commentAvatar">
+            <img src="<?php
+              if ($this->remember('mail', true)) {
+                $rating = Helper::options()->commentsAvatarRating;
+                $hash   = md5($this->remember('mail', true));
+                echo 'https://secure.gravatar.com/avatar/' , $hash , '?s=50' , '&r=' , $rating , '&d=';
+              } else {
+                $this->options->themeUrl('img/avatar.png');
+              }
+            ?>" class="avatar" />
+          </a>
+      		<p id="commentPanel">
+        		<input type="text" name="author" id="author" class="text" placeholder="Nick" value="<?php $this->remember('author'); ?>" required />
+        		<input type="email" name="mail" id="mail" class="text" placeholder="Email" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
+            <input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
+      		  <a class="submit" id="commentPanelClose">提交</a>
+          </p>
         <?php endif; ?>
-    		<p>
-            <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ><?php $this->remember('text'); ?></textarea>
-        </p>
-        <p><button type="submit" class="submit"><?php _e('提交评论'); ?></button>
+    		<p id="commentArea">
+          <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ><?php $this->remember('text'); ?></textarea>
+          <button type="submit" class="submit"><?php _e('提交评论'); ?></button>
         </p>
     	</form>
     </div>
@@ -58,13 +69,9 @@
     <div id="<?php $comments->theId(); ?>" class="clear">
       <div class="comment-author levels<?php $comments->levels();?>">
         <?php
-        //头像CDN by Rich
-          $host = 'https://secure.gravatar.com'; //自定义头像CDN服务器
-          $url = '/avatar/'; //自定义头像目录,一般保持默认即可
-          $size = '50'; //自定义头像大小
           $rating = Helper::options()->commentsAvatarRating;
-          $hash = md5(strtolower($comments->mail));
-          $avatar = $host . $url . $hash . '?s=' . $size . '&r=' . $rating . '&d=';
+          $hash   = md5 ( strtolower ( $comments->mail ) );
+          $avatar = 'https://secure.gravatar.com/avatar/' . $hash . '?s=50' . '&r=' . $rating . '&d=';
         ?>
         <img class="avatar" src="<?php echo $avatar ?>">
         <cite class="fn"><em class="authorname"><?php $comments->author(); ?></em>
