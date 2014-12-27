@@ -11,7 +11,7 @@ html{
 }
 
 /* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
-html.borderbox *, html.borderbox *:before, html.borderbox *:after {
+*, *:before, *:after {
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -405,7 +405,7 @@ body {
 }
 
 #navbar {
-	height: 40px;
+	height: 37px;
 	width: 1100px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -499,7 +499,7 @@ body {
 /* Search Bar */
 .search-input {
 	border: 0;
-	height: 40px;
+	height: 37px;
 	width: 150px;
 	outline-offset: -1px;
 	padding: 0 20px 0 40px;
@@ -671,29 +671,75 @@ body {
 }
 
 .post-next-prev {
-	float: right;
-	line-height: 30px;
-	border: 1px solid #ddd;
+	font-size: 20px;
+	margin-bottom: 40px;
 }
 
-.post-next-prev .prev, .post-next-prev .next {
-	padding: 0 20px;
+.post-next-prev .prev,
+.post-next-prev .next {
+	width: 50%;
+	color: #c7c7c7;
 	float: left;
-	color: #999;
-	background: #f8f8f8;
-	transition: background .4s;
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	transition: color .2s;
 }
 
-.post-next-prev .prev a, .post-next-prev .next a {
+.post-next-prev .prev a,
+.post-next-prev .next a {
+	color: #c7c7c7;
+	transition: color .2s;
+}
+
+.post-next-prev .prev:hover,
+.post-next-prev .next:hover {
 	color: #999;
 }
 
-.post-next-prev .next:hover, .post-next-prev .prev:hover {
-	background: #fdfdfd;
+.post-next-prev .prev:hover a,
+.post-next-prev .next:hover a {
+	color: #999;
+	text-decoration: none;
+}
+
+.post-next-prev .prev:after {
+	content: "\2022";
+	color: #777;
+	top: -3px;
+	right: -5px;
+	font-size: 25px;
+	position: absolute;
 }
 
 .post-next-prev .prev {
-	border-right: 1px solid #ddd;
+	text-align: right;
+	margin-left: -20px;
+	padding-right: 20px;
+}
+
+.post-next-prev .next {
+	text-align: left;
+	text-indent: 20px;
+}
+
+.post-next-prev .prev:before,
+.post-next-prev .next:before {
+	color: #c7c7c7;
+	top: -20px;
+	font-size: 14px;
+	position: absolute;
+	font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.post-next-prev .prev:before {
+	content: "\2039  Prev";
+	right: 20px;
+}
+
+.post-next-prev .next:before {
+	content: 'Next  \203A';
+	left: 0;
 }
 
 .archive-title {
@@ -813,6 +859,7 @@ body {
 #comments-list li .authorname a {
 	color: #777;
 	font-size: 14px;
+	padding-left: 6px;
 }
 
 #comments-list li .comment-content {

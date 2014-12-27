@@ -14,12 +14,13 @@
       <?php $this->category(''); ?>
       <?php $this->tags(''); ?>
     </span>
-    <span class="post-next-prev">
-      <span class="prev"><?php $this->thePrev('%s','已经是第一篇了'); ?></span>
-      <span class="next"><?php $this->theNext('%s','已经是最后一篇了'); ?></span>
-    </span>
   </footer>
 </article>
+
+<section class="post-next-prev clear">
+  <span class="prev"><?php $this->thePrev('%s','已经是第一篇了'); ?></span>
+  <span class="next"><?php $this->theNext('%s','已经是最后一篇了'); ?></span>
+</section>
 
 <section id="comment-list">
   <?php $this->need('comments.php'); ?>

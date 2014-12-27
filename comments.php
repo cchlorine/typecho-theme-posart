@@ -22,7 +22,7 @@
               }
             ?>" class="avatar" />
           </a>
-      		<p id="commentPanel">
+      		<p id="commentPanel" <?php if (!$this->remember('mail', true)) { echo 'style="display: block;"'; } ?>>
         		<input type="text" name="author" id="author" class="text" placeholder="Nick" value="<?php $this->remember('author'); ?>" required />
         		<input type="email" name="mail" id="mail" class="text" placeholder="Email" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
             <input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
@@ -67,7 +67,7 @@
     echo $commentClass;
   ?>">
     <div id="<?php $comments->theId(); ?>" class="clear">
-      <div class="comment-author levels<?php $comments->levels();?>">
+      <header class="levels<?php $comments->levels();?>">
         <?php
           $rating = Helper::options()->commentsAvatarRating;
           $hash   = md5 ( strtolower ( $comments->mail ) );
@@ -76,7 +76,7 @@
         <img class="avatar" src="<?php echo $avatar ?>">
         <cite class="fn"><em class="authorname"><?php $comments->author(); ?></em>
   			</cite>
-      </div>
+      </header>
       <section class="comment-content">
         <?php $comments->content(); ?>
       </section>
