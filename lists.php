@@ -40,4 +40,6 @@
 		</footer>
 	</article>
 <?php endwhile; ?>
-<?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+<section id="pageNav">
+	<?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+</section>

@@ -945,8 +945,42 @@ body {
 
 
 /* Pagination*/
-.page-navigator{padding-bottom:20px}
-.page-navigator li{display:inline}
-.page-navigator a,.page-navigator span{padding: 5px 15px;line-height:20px;text-decoration:none;background-color:#fff;color:#666}
-.page-navigator a:hover,.page-navigator a:focus{background-color:#ccc;color:#444}
-.page-navigator .current a,.page-navigator .current{background-color:#428BCA;color:#fff;cursor:default}
+
+#pageNav {
+	text-align: center;
+}
+
+.page-navigator {
+	margin: 0 auto;
+	margin-bottom: 20px;
+	display: inline-block;
+	box-shadow: 0 0 3px #bababa;
+}
+
+.page-navigator li {
+	display: inline-block;
+}
+
+.page-navigator a,
+.page-navigator span {
+	color: #666;
+	display: block;
+	padding: 10px 15px;
+	line-height: 20px;
+	text-decoration: none;
+	background-color: #fff;
+	transition: color, background .3s;
+}
+
+.page-navigator a:hover,
+.page-navigator a:focus {
+	color: #2C5C74;
+	background-color: #E2E2E2;
+}
+
+.page-navigator .current a,
+.page-navigator .current {
+	background-color: #2C5C74;
+	color: #fff;
+	cursor: default;
+}
