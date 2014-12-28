@@ -9,7 +9,17 @@
 
     	<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
         <?php if($this->user->hasLogin()): ?>
-    		    <p><?php _e('登录身份：'); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
+          <a href="javascript:;" id="commentAvatar">
+            <img src="<?php
+            if ($this->remember('mail', true)) {
+              $rating = Helper::options()->commentsAvatarRating;
+              $hash   = md5($this->remember('mail', true));
+              echo 'https://secure.gravatar.com/avatar/' , $hash , '?s=50' , '&r=' , $rating , '&d=';
+            } else {
+              $this->options->themeUrl('img/avatar.png');
+            }
+            ?>" class="avatar" />
+          </a>
         <?php else: ?>
           <a href="javascript:;" id="commentAvatar">
             <img src="<?php
